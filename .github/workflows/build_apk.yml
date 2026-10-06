@@ -21,7 +21,7 @@ jobs:
           sudo apt update
           sudo apt install -y git zip unzip openjdk-17-jdk \
             autoconf libtool pkg-config zlib1g-dev \
-            libncurses5-dev libncursesw5-dev libtinfo6 cmake \
+            libncurses-dev libtinfo6 cmake \
             libffi-dev libssl-dev automake
 
       - name: Install Buildozer and Cython
@@ -30,12 +30,11 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          cd android_app
           yes | buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: evoscanner-apk
-          path: android_app/bin/*.apk
+          path: bin/*.apk
           retention-days: 30
