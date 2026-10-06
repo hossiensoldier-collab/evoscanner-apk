@@ -137,3 +137,4 @@ if __name__ == "__main__":
     n = extract_graphics_topics(kb)
     print(f"✓ {n} موضوع گرافیک استخراج شد")
     graphics_report(kb)
+

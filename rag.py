@@ -64,3 +64,4 @@ def ask(kb, question, top_n=5):
         if n >= top_n: break
     if n == 0:
         print("  ✗ پاسخ مرتبطی یافت نشد")
+

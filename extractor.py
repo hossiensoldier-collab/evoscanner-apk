@@ -194,3 +194,4 @@ if __name__ == "__main__":
     from evoscanner_v2 import KB
     kb = KB()
     extract_all(kb)
+

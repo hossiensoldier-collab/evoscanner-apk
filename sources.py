@@ -141,3 +141,4 @@ def scan_all(query, n=5):
         except Exception as e:
             print(f"  ! {name}: {e}")
     return results
+

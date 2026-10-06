@@ -310,3 +310,4 @@ class Graph:
         cooc = len(self.data.get("cooc", {}))
         return {"entities": ents, "resources": res,
                 "edges": len(self.data["edges"]), "cooc": cooc}
+
