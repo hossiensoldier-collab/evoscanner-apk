@@ -8,24 +8,19 @@ on:
 jobs:
   build-android:
     runs-on: ubuntu-latest
-    container:
-      image: kivy/buildozer:latest
     steps:
       - uses: actions/checkout@v4
-      - name: Cache Buildozer
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.buildozer
-            android_app/.buildozer
-          key: buildozer-${{ hashFiles('android_app/buildozer.spec') }}
+
       - name: Build with Buildozer
-        run: |
-          cd android_app
-          yes | buildozer android debug
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          workdir: android_app
+          buildozer_version: master
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: evoscanner-apk
-          path: android_app/bin/*.apk
+          path: ${{ steps.buildozer.outputs.filename }}
           retention-days: 30
