@@ -8,27 +8,21 @@ on:
 jobs:
   build-android:
     runs-on: ubuntu-latest
+    container:
+      image: kivy/buildozer:latest
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
+      - name: Cache Buildozer
+        uses: actions/cache@v4
         with:
-          python-version: '3.11'
-
-      - name: Install deps
-        run: |
-          sudo apt update
-          sudo apt install -y git zip unzip openjdk-17-jdk \
-            python3-pip autoconf libtool pkg-config zlib1g-dev \
-            libncurses5-dev libncursesw5-dev libtinfo6 cmake \
-            libffi-dev libssl-dev automake
-          pip install buildozer cython
-
+          path: |
+            ~/.buildozer
+            android_app/.buildozer
+          key: buildozer-${{ hashFiles('android_app/buildozer.spec') }}
       - name: Build with Buildozer
         run: |
           cd android_app
-          yes | buildozer android debug || true
-
+          yes | buildozer android debug
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
