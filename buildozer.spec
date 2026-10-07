@@ -6,7 +6,7 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json,db
 source.include_patterns = assets/*,data/*
 version = 3.0.0
-requirements = python3,kivy,requests,urllib3,certifi,chardet,idna
+requirements = python3==3.10.12,hostpython3==3.10.12,kivy==2.3.0,cython==0.29.36,requests,urllib3,certifi,chardet,idna
 orientation = portrait
 fullscreen = 0
 android.permissions = INTERNET,ACCESS_NETWORK_STATE,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
